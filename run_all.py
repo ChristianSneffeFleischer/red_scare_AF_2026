@@ -7,7 +7,7 @@ from alternate import alternate
 HEADER = ["instance", "n", "A", "F", "M", "N", "S"]
 
 
-def main(data_dir, out_path="results.csv"):
+def main(data_dir, out_path="results.txt"):
     with open(out_path, "w") as out:
         out.write("\t".join(HEADER) + "\n")
 
