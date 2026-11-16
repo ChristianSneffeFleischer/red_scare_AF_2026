@@ -3,6 +3,7 @@ import sys
 import time
 from rs_none import parse_graph, solve_none
 from alternate import alternate
+from rs_many import parse_graph as parse_many_graph, solve_many
 
 HEADER = ["instance", "n", "A", "F", "M", "N", "S"]
 
@@ -22,10 +23,20 @@ def main(data_dir, out_path="results.txt"):
                 n = len(adj)
                 none_answer = solve_none(adj, red, s, t)
                 alternate_answer = alternate(adj, red, s, t)
+                many_graph = parse_many_graph(path)
+                many_answer = solve_many(many_graph).display_value
             except Exception as e:
                 print(f"{name}: {e}", file=sys.stderr)
                 continue
-            row = [name, str(n), str(alternate_answer).lower(), "-", "-", str(none_answer), "-"]
+            row = [
+                name,
+                str(n),
+                str(alternate_answer).lower(),
+                "-",
+                many_answer,
+                str(none_answer),
+                "-",
+            ]
             out.write("\t".join(row) + "\n")
 
 
