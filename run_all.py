@@ -5,6 +5,7 @@ from rs_none import parse_graph, solve_none
 from rs_alternate import alternate
 from rs_few import solve_few
 from rs_many import parse_graph as parse_many_graph, solve_many
+from rs_some import find_path_with_red, find_directed_path_with_red
 
 HEADER = ["instance", "n", "A", "F", "M", "N", "S"]
 
@@ -27,6 +28,7 @@ def main(data_dir, out_path="results.txt"):
                 few_answer = solve_few(adj, red, s, t)
                 many_graph = parse_many_graph(path)
                 many_answer = solve_many(many_graph).display_value
+                some_answer = find_path_with_red(adj, red, s, t)
             except Exception as e:
                 print(f"{name}: {e}", file=sys.stderr)
                 continue
