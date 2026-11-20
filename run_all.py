@@ -2,7 +2,7 @@ import os
 import sys
 import time
 from rs_none import parse_graph, solve_none
-from alternate import alternate
+from rs_alternate import alternate
 from rs_few import solve_few
 from rs_many import parse_graph as parse_many_graph, solve_many
 

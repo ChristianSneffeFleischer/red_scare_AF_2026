@@ -1,7 +1,27 @@
-### Med hjælp fra Claude, har jeg udbygget denne løsning. I simple termer: fjern alle edges der ikke har eksakt ét rødt endpoint (node)
+# alternate.py: Red Scare!, problem Alternate (A)
+# Author: Christian (chfl@itu.dk)
+
+## !Danish notes whilst creating script:
+### Jeg har udbygget denne løsning, som I simple termer: fjern alle edges der ikke har eksakt ét rødt endpoint (node)
 ### Dvs. fjern alle edges med ensfarvede ende-nodes. Tjek i de resterende edges: Kan S gå til T heri?
-### Først læses graferne ind med en funktion. Dernæst: Et Queue-setup bruges og popping til at bygge den ovenstående constraint ind i grafen.
+### Først læses graferne ind med en funktion parser_function. Dernæst: Et Queue-setup bruges og popping til at bygge den ovenstående constraint ind i grafen.
 ## Og for at vurdere om s->t i de resterende 
+
+# !English:
+# Idea: a path alternates exactly when every edge on it has exactly one red
+# endpoint. So I ignore every edge whose two endpoints have the same colour
+# and check whether t is still reachable from s using the remaining edges.
+#
+# Implementation:
+#   1. parse_graph reads an instance (same parser as the rest of the group).
+#   2. alternate runs a breadth-first search from s. The colour constraint is
+#      built into the search: an edge (u, v) is skipped when u and v have the
+#      same colour, so the filtered graph never has to be built explicitly.
+#   3. main runs this on every instance in a data directory and writes
+#      alternate_results.tsv.
+#
+# Usage: python3 alternate.py <data directory>
+# Runs in O(n + m) per instance, on directed and undirected graphs alike.
 
 import os
 import sys
@@ -55,6 +75,8 @@ def main():
     rows = []                            # (instance, n, answer, seconds)
 
     for filename in sorted(os.listdir(data_dir)):
+        if not filename.endswith(".txt"):    # <-- skip README.md etc.
+            continue
         path = os.path.join(data_dir, filename)
         name = os.path.splitext(filename)[0]
         try:
