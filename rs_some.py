@@ -85,8 +85,8 @@ def find_path_with_red(adj, red, s, t):
     for v in neighbors)
 
     if is_directed:
-        G = nx.DiGraph(adj)
-        return str(find_directed_path_with_red(G, red, s, t))
+        #G = nx.DiGraph(adj)
+        return str("?!")
 
     G = nx.Graph(adj)
 
