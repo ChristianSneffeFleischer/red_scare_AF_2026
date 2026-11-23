@@ -29,10 +29,6 @@ def parse_graph(path):
 
     return adj, red, s, t
 
-import time
-
-import time
-
 def find_directed_path_with_red(G, red, s, t, time_limit=300):
     """
     Check whether there exists a simple directed path from s to t
@@ -55,7 +51,7 @@ def find_directed_path_with_red(G, red, s, t, time_limit=300):
 
         # Check time limit
         if time.time() - start_time > time_limit:
-            return "?"
+            return "!?"
 
         current, path, found_red = stack.pop()
 
