@@ -37,9 +37,9 @@ def main(data_dir, out_path="results.txt"):
                 str(n),
                 str(alternate_answer).lower(),
                 str(few_answer),
-                many_answer,
+                str(many_answer),
                 str(none_answer),
-                "-",
+                str(some_answer)
             ]
             out.write("\t".join(row) + "\n")
 
