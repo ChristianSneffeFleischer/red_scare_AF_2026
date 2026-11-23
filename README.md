@@ -1,4 +1,4 @@
-# Red Scare! — Algorithms and Design
+# Red Scare! — Algorithm Design
 
 This folder contains our implementations for the five Red Scare! questions and the instance runner used to produce [`results.txt`](results.txt).
 
